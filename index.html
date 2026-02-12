@@ -3,46 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Guessing Game</title>
+    <title>🚀 GALAXY DEFENDER - Epic Space Shooter 💥</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🎮 Number Guessing Game</h1>
-        <p class="instructions">I'm thinking of a number between 1 and 100. Can you guess it?</p>
-        
-        <div class="game-area">
-            <div class="stats">
-                <div class="stat">
-                    <span class="stat-label">Attempts:</span>
-                    <span class="stat-value" id="attempts">0</span>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        <div id="ui-overlay">
+            <div id="top-bar">
+                <div class="ui-stat">
+                    <span class="label">SCORE</span>
+                    <span id="score" class="value">0</span>
                 </div>
-                <div class="stat">
-                    <span class="stat-label">Best Score:</span>
-                    <span class="stat-value" id="best-score">-</span>
+                <div class="ui-stat">
+                    <span class="label">WAVE</span>
+                    <span id="wave" class="value">1</span>
+                </div>
+                <div class="ui-stat">
+                    <span class="label">COMBO</span>
+                    <span id="combo" class="value combo-display">x1</span>
+                </div>
+                <div class="ui-stat">
+                    <span class="label">HIGH SCORE</span>
+                    <span id="high-score" class="value">0</span>
                 </div>
             </div>
-            
-            <div class="input-area">
-                <input type="number" id="guess-input" min="1" max="100" placeholder="Enter your guess">
-                <button id="guess-button">Guess</button>
+            <div id="health-bar-container">
+                <div class="bar-label">HULL</div>
+                <div class="bar-bg">
+                    <div id="health-bar" class="bar health-bar"></div>
+                </div>
             </div>
-            
-            <div id="message" class="message"></div>
-            
-            <button id="reset-button" class="reset-button" style="display: none;">New Game</button>
+            <div id="shield-bar-container">
+                <div class="bar-label">SHIELD</div>
+                <div class="bar-bg">
+                    <div id="shield-bar" class="bar shield-bar"></div>
+                </div>
+            </div>
         </div>
-        
-        <div class="hints">
-            <h3>💡 Tips:</h3>
-            <ul>
-                <li>The number is between 1 and 100</li>
-                <li>Try to guess in as few attempts as possible</li>
-                <li>Pay attention to the hints!</li>
-            </ul>
+        <div id="game-over-screen" class="screen hidden">
+            <h1>💥 GAME OVER 💥</h1>
+            <p>Final Score: <span id="final-score"></span></p>
+            <p>Wave Reached: <span id="final-wave"></span></p>
+            <p>Enemies Destroyed: <span id="enemies-destroyed"></span></p>
+            <button id="restart-button" class="game-button">🚀 RESTART MISSION</button>
+        </div>
+        <div id="start-screen" class="screen">
+            <h1>🚀 GALAXY DEFENDER 🚀</h1>
+            <p class="subtitle">Epic Space Shooter</p>
+            <div class="instructions">
+                <h3>⚔️ CONTROLS ⚔️</h3>
+                <p><strong>WASD</strong> or <strong>Arrow Keys</strong> - Move Ship</p>
+                <p><strong>SPACE</strong> or <strong>LEFT CLICK</strong> - Fire Lasers</p>
+                <p><strong>ESC</strong> - Pause</p>
+                
+                <h3>💎 POWER-UPS 💎</h3>
+                <p>🛡️ <strong>Shield</strong> - Absorbs damage</p>
+                <p>❤️ <strong>Health</strong> - Repairs hull</p>
+                <p>⚡ <strong>Rapid Fire</strong> - Shoot faster!</p>
+                <p>💥 <strong>Multi-Shot</strong> - Triple lasers!</p>
+                
+                <h3>🎯 OBJECTIVES 🎯</h3>
+                <p>• Destroy alien invaders</p>
+                <p>• Survive waves of enemies</p>
+                <p>• Collect power-ups</p>
+                <p>• Build combos for bonus points</p>
+                <p>• Face epic boss battles!</p>
+            </div>
+            <button id="start-button" class="game-button">▶️ START GAME</button>
+        </div>
+        <div id="pause-screen" class="screen hidden">
+            <h1>⏸️ PAUSED</h1>
+            <button id="resume-button" class="game-button">▶️ RESUME</button>
         </div>
     </div>
-    
     <script src="game.js"></script>
 </body>
 </html>
