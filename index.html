@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Number Guessing Game</h1>
+        <p class="instructions">I'm thinking of a number between 1 and 100. Can you guess it?</p>
+        
+        <div class="game-area">
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-label">Attempts:</span>
+                    <span class="stat-value" id="attempts">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Best Score:</span>
+                    <span class="stat-value" id="best-score">-</span>
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <input type="number" id="guess-input" min="1" max="100" placeholder="Enter your guess">
+                <button id="guess-button">Guess</button>
+            </div>
+            
+            <div id="message" class="message"></div>
+            
+            <button id="reset-button" class="reset-button" style="display: none;">New Game</button>
+        </div>
+        
+        <div class="hints">
+            <h3>💡 Tips:</h3>
+            <ul>
+                <li>The number is between 1 and 100</li>
+                <li>Try to guess in as few attempts as possible</li>
+                <li>Pay attention to the hints!</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
