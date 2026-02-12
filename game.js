@@ -22,8 +22,6 @@ class NumberGuessingGame {
         
         this.updateDisplay();
         this.setupEventListeners();
-        
-        console.log('Secret number:', this.secretNumber); // For debugging
     }
     
     setupEventListeners() {
@@ -91,8 +89,6 @@ class NumberGuessingGame {
         
         this.updateDisplay();
         this.guessInput.focus();
-        
-        console.log('New secret number:', this.secretNumber); // For debugging
     }
     
     showMessage(text, type) {
