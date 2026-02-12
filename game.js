@@ -39,7 +39,7 @@ class NumberGuessingGame {
         
         const guess = parseInt(this.guessInput.value);
         
-        if (!guess || guess < 1 || guess > 100) {
+        if (isNaN(guess) || guess < 1 || guess > 100) {
             this.showMessage('Please enter a number between 1 and 100!', 'error');
             return;
         }
@@ -66,7 +66,10 @@ class NumberGuessingGame {
         if (!this.bestScore || this.attempts < this.bestScore) {
             this.bestScore = this.attempts;
             localStorage.setItem('bestScore', this.bestScore);
-            this.messageDiv.innerHTML += '<br><strong>🏆 New Best Score!</strong>';
+            const newBestMessage = document.createElement('strong');
+            newBestMessage.textContent = '🏆 New Best Score!';
+            this.messageDiv.appendChild(document.createElement('br'));
+            this.messageDiv.appendChild(newBestMessage);
         }
         
         this.updateDisplay();
