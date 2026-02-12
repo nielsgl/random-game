@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    color: #667eea;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+.instructions {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.game-area {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 25px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#guess-input {
+    flex: 1;
+    padding: 15px;
+    font-size: 1.2em;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#guess-input:focus {
+    border-color: #667eea;
+}
+
+#guess-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+    font-weight: bold;
+}
+
+#guess-button:hover {
+    background: #5568d3;
+}
+
+#guess-button:active {
+    transform: scale(0.98);
+}
+
+#guess-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.message {
+    min-height: 60px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 2px solid #c3e6cb;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 2px solid #f5c6cb;
+}
+
+.message.hint {
+    background: #fff3cd;
+    color: #856404;
+    border: 2px solid #ffeaa7;
+}
+
+.reset-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.reset-button:hover {
+    background: #218838;
+}
+
+.hints {
+    background: #e7f3ff;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.hints h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.hints ul {
+    list-style-position: inside;
+    color: #666;
+}
+
+.hints li {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .input-area {
+        flex-direction: column;
+    }
+}
