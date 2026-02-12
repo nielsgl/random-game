@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Guessing Game</title>
+    <title>🚀 SPACE BATTLE: Number Wars 👽</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="starfield"></canvas>
+    <div id="spaceship" class="spaceship">🚀</div>
+    <div id="alien" class="alien">👽</div>
+    <div id="explosions-container"></div>
     <div class="container">
-        <h1>🎮 Number Guessing Game</h1>
-        <p class="instructions">I'm thinking of a number between 1 and 100. Can you guess it?</p>
+        <h1>🚀 SPACE BATTLE: Number Wars 👽</h1>
+        <p class="instructions">💥 The alien's secret number is between 1 and 100. Fire your laser to destroy it! 💥</p>
         
         <div class="game-area">
             <div class="stats">
@@ -24,21 +28,23 @@
             </div>
             
             <div class="input-area">
-                <input type="number" id="guess-input" min="1" max="100" placeholder="Enter your guess">
-                <button id="guess-button">Guess</button>
+                <input type="number" id="guess-input" min="1" max="100" placeholder="Enter coordinates (1-100)">
+                <button id="guess-button">🔫 FIRE LASER!</button>
             </div>
+            <div id="laser-beam" class="laser-beam"></div>
             
             <div id="message" class="message"></div>
             
-            <button id="reset-button" class="reset-button" style="display: none;">New Game</button>
+            <button id="reset-button" class="reset-button" style="display: none;">🚀 NEW BATTLE</button>
         </div>
         
         <div class="hints">
-            <h3>💡 Tips:</h3>
+            <h3>⚡ COMBAT INTEL:</h3>
             <ul>
-                <li>The number is between 1 and 100</li>
-                <li>Try to guess in as few attempts as possible</li>
-                <li>Pay attention to the hints!</li>
+                <li>👽 Alien coordinates: 1 to 100</li>
+                <li>🎯 Destroy it in minimal shots for high score!</li>
+                <li>📡 Your radar will guide you!</li>
+                <li>💥 Watch for explosions and battle effects!</li>
             </ul>
         </div>
     </div>

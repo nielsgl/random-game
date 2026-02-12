@@ -6,42 +6,222 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #0a0e27;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* AWESOME STARFIELD BACKGROUND */
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+
+/* SPACESHIP - PLAYER */
+.spaceship {
+    position: fixed;
+    font-size: 80px;
+    z-index: 100;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: spaceshipHover 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 0, 0.8));
+    transition: all 0.3s;
+}
+
+@keyframes spaceshipHover {
+    0%, 100% { transform: translateX(-50%) translateY(0px); }
+    50% { transform: translateX(-50%) translateY(-15px); }
+}
+
+.spaceship.firing {
+    animation: spaceshipFire 0.3s;
+}
+
+@keyframes spaceshipFire {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.2) translateY(-10px); }
+}
+
+/* ALIEN - ENEMY */
+.alien {
+    position: fixed;
+    font-size: 70px;
+    z-index: 99;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: alienFloat 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(0, 255, 0, 0.9));
+}
+
+@keyframes alienFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+    50% { transform: translateX(-50%) translateY(10px) rotate(5deg); }
+}
+
+.alien.hit {
+    animation: alienHit 0.5s;
+}
+
+@keyframes alienHit {
+    0% { transform: translateX(-50%) scale(1); }
+    25% { transform: translateX(-50%) scale(1.3) rotate(15deg); }
+    50% { transform: translateX(-50%) scale(0.8) rotate(-15deg); }
+    75% { transform: translateX(-50%) scale(1.2) rotate(10deg); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+.alien.destroyed {
+    animation: alienDestroy 1s forwards;
+}
+
+@keyframes alienDestroy {
+    0% { 
+        transform: translateX(-50%) scale(1) rotate(0deg); 
+        opacity: 1;
+    }
+    50% { 
+        transform: translateX(-50%) scale(2) rotate(360deg); 
+        opacity: 0.5;
+        filter: drop-shadow(0 0 50px rgba(255, 0, 0, 1));
+    }
+    100% { 
+        transform: translateX(-50%) scale(0) rotate(720deg); 
+        opacity: 0;
+    }
+}
+
+/* LASER BEAM EFFECT */
+.laser-beam {
+    position: fixed;
+    width: 5px;
+    height: 0;
+    background: linear-gradient(to top, #ff0000, #ffff00, #00ff00);
+    left: 50%;
+    bottom: 100px;
+    transform: translateX(-50%);
+    z-index: 98;
+    box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
+    opacity: 0;
+    transition: height 0.3s, opacity 0.3s;
+}
+
+.laser-beam.firing {
+    height: 70%;
+    opacity: 1;
+    animation: laserPulse 0.3s;
+}
+
+@keyframes laserPulse {
+    0%, 100% { width: 5px; opacity: 1; }
+    50% { width: 15px; opacity: 0.7; }
+}
+
+/* EXPLOSION EFFECTS */
+.explosion {
+    position: fixed;
+    font-size: 100px;
+    z-index: 101;
+    animation: explode 1s forwards;
+    pointer-events: none;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5) rotate(180deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(3) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* PARTICLE EFFECTS */
+.particle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #ffff00, #ff6600);
+    border-radius: 50%;
+    z-index: 102;
+    pointer-events: none;
+    box-shadow: 0 0 10px #ffff00;
+}
+
+@keyframes particleBurst {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .container {
-    background: white;
+    background: rgba(20, 30, 60, 0.95);
     border-radius: 20px;
     padding: 40px;
     max-width: 600px;
     width: 100%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3), 0 0 100px rgba(255, 0, 255, 0.2);
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    z-index: 10;
+    position: relative;
+    animation: containerGlow 3s ease-in-out infinite;
+}
+
+@keyframes containerGlow {
+    0%, 100% { box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3), 0 0 100px rgba(255, 0, 255, 0.2); }
+    50% { box-shadow: 0 20px 60px rgba(0, 255, 255, 0.6), 0 0 100px rgba(255, 0, 255, 0.4); }
 }
 
 h1 {
-    color: #667eea;
+    color: #00ffff;
     text-align: center;
     margin-bottom: 10px;
     font-size: 2.5em;
+    text-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+    animation: titlePulse 2s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% { text-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff; }
+    50% { text-shadow: 0 0 30px #00ffff, 0 0 60px #ff00ff, 0 0 80px #ffff00; }
 }
 
 .instructions {
     text-align: center;
-    color: #666;
+    color: #00ff88;
     margin-bottom: 30px;
     font-size: 1.1em;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 .game-area {
-    background: #f8f9fa;
+    background: rgba(10, 20, 50, 0.8);
     padding: 30px;
     border-radius: 15px;
     margin-bottom: 30px;
+    border: 2px solid rgba(0, 255, 255, 0.2);
+    box-shadow: inset 0 0 30px rgba(0, 255, 255, 0.1);
 }
 
 .stats {
@@ -56,16 +236,24 @@ h1 {
 
 .stat-label {
     display: block;
-    color: #666;
+    color: #00ffff;
     font-size: 0.9em;
     margin-bottom: 5px;
+    text-shadow: 0 0 5px #00ffff;
 }
 
 .stat-value {
     display: block;
     font-size: 2em;
     font-weight: bold;
-    color: #667eea;
+    color: #ffff00;
+    text-shadow: 0 0 10px #ffff00, 0 0 20px #ff00ff;
+    animation: statGlow 2s ease-in-out infinite;
+}
+
+@keyframes statGlow {
+    0%, 100% { text-shadow: 0 0 10px #ffff00, 0 0 20px #ff00ff; }
+    50% { text-shadow: 0 0 20px #ffff00, 0 0 30px #ff00ff, 0 0 40px #00ffff; }
 }
 
 .input-area {
@@ -78,39 +266,49 @@ h1 {
     flex: 1;
     padding: 15px;
     font-size: 1.2em;
-    border: 2px solid #ddd;
+    border: 2px solid #00ffff;
     border-radius: 10px;
     outline: none;
-    transition: border-color 0.3s;
+    transition: all 0.3s;
+    background: rgba(0, 20, 40, 0.8);
+    color: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
 #guess-input:focus {
-    border-color: #667eea;
+    border-color: #ffff00;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+    background: rgba(0, 30, 50, 0.9);
 }
 
 #guess-button {
     padding: 15px 30px;
     font-size: 1.2em;
-    background: #667eea;
+    background: linear-gradient(135deg, #ff0080, #ff8c00);
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.1s;
+    transition: all 0.3s;
     font-weight: bold;
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.5), 0 0 40px rgba(255, 140, 0, 0.3);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 #guess-button:hover {
-    background: #5568d3;
+    background: linear-gradient(135deg, #ff0080, #ffff00);
+    box-shadow: 0 0 30px rgba(255, 0, 128, 0.8), 0 0 60px rgba(255, 255, 0, 0.5);
+    transform: scale(1.05);
 }
 
 #guess-button:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
 }
 
 #guess-button:disabled {
-    background: #ccc;
+    background: rgba(100, 100, 100, 0.5);
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 .message {
@@ -124,60 +322,75 @@ h1 {
 }
 
 .message.success {
-    background: #d4edda;
-    color: #155724;
-    border: 2px solid #c3e6cb;
+    background: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+    border: 2px solid #00ff88;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+    animation: successPulse 1s ease-in-out infinite;
+}
+
+@keyframes successPulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.5); }
+    50% { box-shadow: 0 0 50px rgba(0, 255, 136, 0.8); }
 }
 
 .message.error {
-    background: #f8d7da;
-    color: #721c24;
-    border: 2px solid #f5c6cb;
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
 }
 
 .message.hint {
-    background: #fff3cd;
-    color: #856404;
-    border: 2px solid #ffeaa7;
+    background: rgba(255, 255, 0, 0.1);
+    color: #ffff00;
+    border: 2px solid rgba(255, 255, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
 }
 
 .reset-button {
     width: 100%;
     padding: 15px;
     font-size: 1.1em;
-    background: #28a745;
-    color: white;
+    background: linear-gradient(135deg, #00ff88, #00ffff);
+    color: #000;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s;
     font-weight: bold;
     margin-top: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
 }
 
 .reset-button:hover {
-    background: #218838;
+    background: linear-gradient(135deg, #00ffff, #ffff00);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+    transform: scale(1.02);
 }
 
 .hints {
-    background: #e7f3ff;
+    background: rgba(0, 40, 80, 0.8);
     padding: 20px;
     border-radius: 10px;
-    border-left: 4px solid #667eea;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
 
 .hints h3 {
-    color: #667eea;
+    color: #00ffff;
     margin-bottom: 15px;
+    text-shadow: 0 0 10px #00ffff;
 }
 
 .hints ul {
     list-style-position: inside;
-    color: #666;
+    color: #00ff88;
 }
 
 .hints li {
     margin-bottom: 8px;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
 }
 
 @media (max-width: 600px) {
